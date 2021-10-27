@@ -43,7 +43,7 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: LojaVirtual
+      MYSQL_DATABASE: lojavirtual
       MYSQL_ROOT_PASSWORD: teste
     volumes:
       - .docker/banco:/var/lib/mysql
