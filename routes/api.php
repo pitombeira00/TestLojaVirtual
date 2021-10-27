@@ -13,19 +13,16 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-//
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
 
-Route::post('/user/register', [AuthController::class, 'register']);
 
-Route::post('/auth/login', [AuthController::class, 'login']);
+Route::post('/token/', 'Api\GenerateTokenController@register');
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/me', function(Request $request) {
-        return auth()->user();
-    });
+Route::middleware(['auth:sanctum'])->group(static function () {
 
-    Route::post('/auth/logout', [AuthController::class, 'logout']);
+    Route::get('/user/', 'Api\AuthController@index');
+    Route::get('/user/', 'Api\AuthController@show');
+    Route::post('/user/', 'Api\AuthController@create');
+    Route::put('/user/', 'Api\AuthController@edit');
+    Route::delete('/user/{id}', 'Api\AuthController@create');
+
 });

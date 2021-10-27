@@ -4,14 +4,14 @@ namespace App\Traits;
 
 /*
 |--------------------------------------------------------------------------
-| Api Responser Trait
+| Api Responder Trait
 |--------------------------------------------------------------------------
 |
 | This trait will be used for any response we sent to clients.
 |
 */
 
-trait ApiResponser
+trait ApiResponder
 {
     /**
      * Return a success JSON response.
