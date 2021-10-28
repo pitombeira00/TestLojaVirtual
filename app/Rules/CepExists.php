@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Services\ViaCepApiService;
 use Illuminate\Contracts\Validation\Rule;
 
 class CepExists implements Rule
@@ -26,6 +27,9 @@ class CepExists implements Rule
     public function passes($attribute, $value)
     {
 
+        $cep = new ViaCepApiService($value);
+
+        return $cep->statusCep();
 
     }
 
@@ -36,6 +40,6 @@ class CepExists implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'Cep invalido.';
     }
 }

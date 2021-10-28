@@ -21,7 +21,7 @@ trait ApiResponder
      * @param  int|null  $code
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function success($data, string $message = null, int $code = 200)
+    protected function success($data = null, string $message = null, int $code = 200)
     {
         return response()->json([
             'status' => 'Success',
@@ -38,7 +38,7 @@ trait ApiResponder
      * @param  array|string|null  $data
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function error(string $message = null, int $code, $data = null)
+    protected function error($data = null,string $message = null, int $code = 404 )
     {
         return response()->json([
             'status' => 'Error',

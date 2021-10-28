@@ -19,10 +19,10 @@ Route::post('/token/', 'Api\GenerateTokenController@register');
 
 Route::middleware(['auth:sanctum'])->group(static function () {
 
-    Route::get('/user/', 'Api\AuthController@index');
-    Route::get('/user/', 'Api\AuthController@show');
-    Route::post('/user/', 'Api\AuthController@create');
-    Route::put('/user/', 'Api\AuthController@edit');
-    Route::delete('/user/{id}', 'Api\AuthController@create');
+    Route::get('/user/', 'Api\AuthIndexController');
+    Route::get('/user/{id}', 'Api\AuthShowController');
+    Route::post('/user/', 'Api\AuthCreateController');
+    Route::put('/user/{id}', 'Api\AuthEditController');
+    Route::delete('/user/{id}', 'Api\AuthDeleteController');
 
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CepExists;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRegisterRequest extends FormRequest
@@ -30,8 +31,8 @@ class UserRegisterRequest extends FormRequest
             'password' => 'required|string|min:6|confirmed',
             'birth' => 'required|string',
             'phone' => 'required|string|max:11',
-            'social_number' => 'required|string|max:11',
-            'cep' => 'required|string|max:11',
+            'social_number' => 'required|string|max:11|unique:users,social_number',
+            'cep' => ['required','string','max:11', new CepExists],
         ];
     }
 }
