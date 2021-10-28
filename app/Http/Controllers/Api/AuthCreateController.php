@@ -18,7 +18,7 @@ class AuthCreateController extends Controller
 
         $cep = new ViaCepApiService($payload['cep']);
 
-        $fieldsUser = array_merge($payload,$cep->dataCreateUser());
+        $fieldsUser = $payload + $cep->dataCreateUser();
 
         $createUser = User::create($fieldsUser);
 

@@ -40,6 +40,6 @@ class CepExists implements Rule
      */
     public function message()
     {
-        return 'Cep invalido.';
+        return 'Invalid Cep.';
     }
 }

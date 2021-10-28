@@ -2,17 +2,18 @@
 
 namespace App\Services;
 
+use App\Http\Resources\CepResource;
 use Illuminate\Support\Facades\Http;
 
 class ViaCepApiService
 {
 
-    private $dataReturn;
+    private $cep;
 
     public function __construct($cepNumber)
     {
 
-        $this->dataReturn = $cepNumber;
+        $this->cep = $cepNumber;
 
     }
 
@@ -20,29 +21,21 @@ class ViaCepApiService
 
         $response = $this->getViaCepRequest();
 
-        if(!$response->ok()){
+        return $response->ok() && !array_key_exists('erro',$response->json());
 
-            return false;
-        }
-
-        if(array_key_exists('erro',$response->json()))
-        {
-            return false;
-        }
-
-        return true;
     }
 
     public function dataCreateUser(){
 
         $response = $this->getViaCepRequest()->json();
+        $cep = new CepResource($response);
 
-        return $this->streetFieldsUser($response);
+        return $cep->toArray($response);
     }
 
     private function getViaCepRequest(){
 
-        return Http::get('viacep.com.br/ws/'.$this->dataReturn.'/json');
+        return Http::get('viacep.com.br/ws/'.$this->cep.'/json');
     }
 
     private function streetFieldsUser($response){

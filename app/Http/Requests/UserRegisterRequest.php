@@ -32,7 +32,7 @@ class UserRegisterRequest extends FormRequest
             'birth' => 'required|string',
             'phone' => 'required|string|max:11',
             'social_number' => 'required|string|max:11|unique:users,social_number',
-            'cep' => ['required','string','max:11', new CepExists],
+            'cep' => ['required','numeric','digits:8', new CepExists],
         ];
     }
 }
