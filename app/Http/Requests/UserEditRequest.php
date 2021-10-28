@@ -27,9 +27,10 @@ class UserEditRequest extends FormRequest
         return [
             'name' => 'string|max:255',
             'password' => 'string|min:6|confirmed',
+            'email' => 'string|email|unique:users,email',
             'birth' => 'string',
             'phone' => 'string|max:11',
-            'cep' => ['string','max:11', new CepExists],
+            'cep' => ['required','numeric','digits:8', new CepExists],
         ];
     }
 }

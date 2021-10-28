@@ -31,7 +31,7 @@ class UserRegisterRequest extends FormRequest
             'password' => 'required|string|min:6|confirmed',
             'birth' => 'required|string',
             'phone' => 'required|string|max:11',
-            'social_number' => 'required|string|max:11|unique:users,social_number',
+            'social_number' => 'required|numeric|digits:11|unique:users,social_number',
             'cep' => ['required','numeric','digits:8', new CepExists],
         ];
     }
